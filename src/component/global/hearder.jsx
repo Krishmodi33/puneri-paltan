@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
 const navigation = [
-  { name: "Players", href: "#" },
+  { name: "Players", href: "/players" },
   { name: "Paltan World", href: "#" },
   { name: "Tickets", href: "#" },
 ];
