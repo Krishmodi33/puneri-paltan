@@ -2,34 +2,57 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getPlayers } from "../action/player.action";
 
 const initialState = {
-  players: [],
+  raiders: [],
+  defenders: [],
+  allrounders: [],
+
   isLoading: false,
   error: null,
 };
 
 const playerSlice = createSlice({
   name: "players",
+
   initialState,
+
   reducers: {},
+
   extraReducers: (builder) => {
+
     builder
 
-      // Pending
+      // PENDING
       .addCase(getPlayers.pending, (state) => {
+
         state.isLoading = true;
+
       })
 
-      // Success
+      // SUCCESS
       .addCase(getPlayers.fulfilled, (state, action) => {
+
         state.isLoading = false;
-        state.players = action.payload;
+
+        state.raiders =
+          action.payload.raiders || [];
+
+        state.defenders =
+          action.payload.defenders || [];
+
+        state.allrounders =
+          action.payload.allrounders || [];
+
       })
 
-      // Failed
+      // FAILED
       .addCase(getPlayers.rejected, (state, action) => {
+
         state.isLoading = false;
+
         state.error = action.payload;
+
       });
+
   },
 });
 

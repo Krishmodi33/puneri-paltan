@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
 
 const navigation = [
   { name: "Players", href: "#" },
@@ -12,19 +13,20 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50">
-
+    <header className="fixed top-0 left-0 w-full z-[9999] ">
       {/* Navbar */}
       <nav className="relative flex items-center justify-center mt-10 mx-4 lg:mx-24 px-8 py-5 bg-black/10 ">
-        
         {/* Logo */}
-        <div className="absolute left-22 -top-10 z-50">
+        <NavLink
+          to="/"
+          className="absolute left-22 -top-10 z-50"
+        >
           <img
             src="/logo.gif"
             alt="Puneri Paltan"
-            className="w-28 md:w-34 object-contain"
+            className="w-28 md:w-34 object-contain cursor-pointer"
           />
-        </div>
+        </NavLink>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-10">
@@ -62,15 +64,15 @@ export default function Header() {
 
         {/* Mobile Panel */}
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-[75%] bg-black p-6">
-          
           {/* Mobile Header */}
           <div className="flex items-center justify-between">
-            <img
-              src="/logo.gif"
-              alt="logo"
-              className="w-24"
-            />
-
+           <NavLink to="/">
+              <img
+                src="/logo.gif"
+                alt="logo"
+                className="w-24 cursor-pointer"
+              />
+            </NavLink>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}

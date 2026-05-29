@@ -1,6 +1,7 @@
 import { Routes,Route } from "react-router-dom"
 import Header from "./component/global/hearder"
 import Hero from "./component/pages/hero"
+import Footer from "./component/global/footer"
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route index element={<Hero />}/>
     </Routes>
+    <Footer/>
     </>
   )
 }

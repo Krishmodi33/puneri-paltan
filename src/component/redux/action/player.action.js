@@ -6,28 +6,26 @@ export const getPlayers = createAsyncThunk(
 
   async (_, thunkAPI) => {
     try {
+      // MULTIPLE API CALLS
+      const [raidersres, defendersres, allroundersres] = await Promise.all([
+        myAxios.get("/player_list?cat_id=1"),
+        myAxios.get("/player_list?cat_id=2"),
+        myAxios.get("/player_list?cat_id=3"),
+      ]);
 
-      // Category API
-      const res = await myAxios.get("/category_list");
+      console.log(raidersres.data);
+      console.log(defendersres.data);
+      console.log(allroundersres.data);
 
-      console.log(res.data);
-
-      // Flatten all players
-      const allPlayers = res.data.flatMap((category) =>
-        category.player_list.map((player) => ({
-          ...player,
-
-          // Optional category name
-          category_name: category.category_name,
-        }))
-      );
-
-      console.log(allPlayers);
-
-      return allPlayers;
-
+      // RETURN OBJECT
+      return {
+        raiders: raidersres.data || "ALL RAIDERS COULDNT FETCH",
+        defenders: defendersres.data || "ALL DEFENDERS COULDNT FETCH",
+        allrounders: allroundersres.data || "ALL ALLROUNDERS COULDNT FETCH",
+      };
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
