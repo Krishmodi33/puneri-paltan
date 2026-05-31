@@ -153,7 +153,7 @@ const Hero = () => {
 
                     {/* PLAYER IMAGE */}
                     <img
-                      src={player.full_image}
+                      src={player.profile_image}
                       alt={player.name}
                       className={`relative z-10 object-contain ${
                         index === 0

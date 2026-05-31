@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const PlayerSection = ({ title, players }) => {
   return (
     <section className="bg-[#e9e9e9] py-20">
@@ -13,18 +15,17 @@ const PlayerSection = ({ title, players }) => {
       {/* PLAYERS GRID */}
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
         {players?.map((player, index) => (
-          <div
-            key={player.id || index}
-            className="group flex flex-col items-center text-center cursor-pointer perspective-[1000px]"
-          >
-            {/* COIN CONTAINER */}
+          <Link
+  to={`/single-player/${player.id}`}
+  key={player.id || index}
+  className="group flex flex-col items-center text-center cursor-pointer perspective-[1000px]"
+>
             <div
               className="
                 relative
                 w-[340px]
                 h-[340px]
                 rounded-full
-                overflow-hidden
                 transition-all
                 duration-700
                 ease-out
@@ -32,12 +33,9 @@ const PlayerSection = ({ title, players }) => {
                 group-hover:[transform:rotateY(20deg)_translateX(-20px)]                
                 "
             >
-              {/* ORANGE COIN */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-[#4d2200] via-[#7a3300] to-[#c96a00]"></div>
-
               {/* PLAYER IMAGE */}
               <img
-                src={player.full_image}
+                src={player.profile_image}
                 alt={player.name}
                 className="
                     absolute
@@ -71,7 +69,7 @@ const PlayerSection = ({ title, players }) => {
             <p className="mt-4 text-[#ff5a00] text-2xl tracking-[2px] capitalize">
               {player.position}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
