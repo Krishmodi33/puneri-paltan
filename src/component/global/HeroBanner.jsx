@@ -1,17 +1,9 @@
 const HeroBanner = ({
   title,
-  bannerImage,
   playerImage,
 }) => {
   return (
     <section className="relative h-[70vh] overflow-hidden bg-black">
-
-      {/* BACKGROUND IMAGE */}
-      <img
-        src={bannerImage}
-        alt={title}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
 
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -30,7 +22,7 @@ const HeroBanner = ({
         </h1>
       </div>
 
-      {/* RIGHT IMAGE */}
+      {/* PLAYER IMAGE */}
       <img
         src={playerImage}
         alt={title}

@@ -8,6 +8,7 @@ import PaltanWorld from "./component/pages/PaltanWorld";
 import PuneriTv from "./component/pages/PuneriTv";
 import Gallery from "./component/pages/Gallery";
 import SingleGallery from "./component/pages/SingleGallery";
+import Wallpaper from "./component/pages/wallpaper";
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
         <Route path="/paltan-world" element={<PaltanWorld />} />
         <Route path="/puneri-tv" element={<PuneriTv />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/single-gallary/:id" element={<SingleGallery />}
-        />
+        <Route path="/single-gallary/:id" element={<SingleGallery />} />
+        <Route path="/wallpapers" element={<Wallpaper />} />
       </Routes>
       <Footer />
     </>
