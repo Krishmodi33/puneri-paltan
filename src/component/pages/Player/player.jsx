@@ -26,9 +26,6 @@ const Players = () => {
     <>
       {/* HERO SECTION */}<section className="relative h-[70vh] overflow-hidden bg-black">
 
-  {/* BACKGROUND */}
-
-
   {/* DARK OVERLAY */}
   <div className="absolute inset-0 bg-black/40 z-10"></div>
 

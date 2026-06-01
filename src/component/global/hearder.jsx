@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const navigation = [
   { name: "Players", href: "/players" },
-  { name: "Paltan World", href: "#" },
+  { name: "Paltan World", href: "/paltan-world" },
   { name: "Tickets", href: "#" },
 ];
 
