@@ -1,9 +1,10 @@
-
+import HeroBanner from "../global/HeroBanner";
 import Footer from "../global/Footer.jsx";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getpuneritvSeasons } from "../redux/action/PuneriTv.action.js";
 import { Link } from "react-router-dom";
+import PaltanLinks from "../global/PaltanLinks";
 
 const PuneriTv = () => {
   const { isLoading, seasons } = useSelector((state) => state.PuneriTvSeasons);
@@ -140,38 +141,34 @@ const PuneriTv = () => {
     setSelectedVideo(null);
   };
 
+  const tvLinks = [
+  {
+    title: "GALLERY",
+    image: "/gallery-s12.png",
+    link: "/gallery",
+  },
+  {
+    title: "WALLPAPERS",
+    image: "/Wallpapers-s12.png",
+    link: "/wallpapers",
+  },
+  {
+    title: "BLOGS",
+    image: "/blogs-s12.png",
+    link: "/blogs",
+  },
+];
+
   return (
     <div className="min-h-screen bg-[#0b0b0b] text-white">
 
-      <section className="relative h-[70vh] overflow-hidden bg-black">
 
-  {/* DARK OVERLAY */}
-  <div className="absolute inset-0 bg-black/40 z-10"></div>
 
-  {/* BANNER TITLE IMAGE */}
-  <img
-    src="/banner-title.png"
-    alt="banner"
-    className="absolute left-84 top-1/2 -translate-y-1/2 z-20 w-[500px]"
-  />
-
-  {/* TITLE */}
-  <div className="absolute left-82 top-1/2 -translate-y-1/2 z-30">
-
-    <h1 className="text-white text-7xl md:text-8xl font-black uppercase tracking-wide">
-      Puneri TV
-    </h1>
-
-  </div>
-
-  {/* PLAYER IMAGE */}
-  <img
-    src="/puneri-tv-desk-banner-s12.png"
-    alt="player"
-    className="absolute right-10 bottom-0 z-30 h-[95%] object-contain"
-  />
-
-</section>
+<HeroBanner
+  title="Puneri TV"
+  bannerImage="/puneri-tv-bg.jpg"
+  playerImage="/puneri-tv-desk-banner-s12.png"
+/>
 
 
       <section className="bg-[#ececec] py-20">
@@ -339,75 +336,7 @@ const PuneriTv = () => {
         </section>
       )}
 
-<section className="bg-[#ececec] pb-20">
-
-  <div className="grid grid-cols-1 md:grid-cols-3">
-
-    {gallerywallpaperblog.map(({ title, href, to }) => (
-
-      <Link
-        key={title}
-        to={to}
-        className="group relative overflow-hidden h-[400px]"
-      >
-
-        {/* IMAGE */}
-        <img
-          src={href}
-          alt={title}
-          className="
-            w-full
-            h-full
-            object-cover
-            transition-all
-            duration-700
-            group-hover:scale-110
-          "
-        />
-
-        {/* DARK OVERLAY */}
-        <div
-          className="
-            absolute
-            inset-0
-            bg-black/45
-            transition-all
-            duration-500
-            group-hover:bg-black/25
-          "
-        />
-
-        {/* TITLE */}
-        <div
-          className="
-            absolute
-            inset-0
-            flex
-            items-center
-            justify-center
-          "
-        >
-          <h2
-            className="
-              text-white
-              text-4xl
-              md:text-5xl
-              font-light
-              uppercase
-              tracking-[4px]
-            "
-          >
-            {title}
-          </h2>
-        </div>
-
-      </Link>
-
-    ))}
-
-  </div>
-
-</section>
+<PaltanLinks links={tvLinks} />
 
     </div>
   );
