@@ -25,7 +25,20 @@ const PuneriTvVideos = ({ videos = [] }) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14">
+    <div className="max-w-7xl
+    mx-auto
+
+    px-4
+    sm:px-6
+    lg:px-8
+
+    grid
+    grid-cols-1
+    md:grid-cols-2
+
+    gap-6
+    md:gap-8
+    lg:gap-14">
 
       {videos?.map((video, index) => (
 
@@ -45,7 +58,10 @@ const PuneriTvVideos = ({ videos = [] }) => {
               alt={video.name}
               className="
                 w-full
-                h-[320px]
+                h-[220px]
+sm:h-[260px]
+md:h-[300px]
+lg:h-[320px]
                 object-cover
                 transition-all
                 duration-500
@@ -58,8 +74,14 @@ const PuneriTvVideos = ({ videos = [] }) => {
 
               <div
                 className="
-                  w-24
-                  h-24
+                 w-14
+h-14
+sm:w-16
+sm:h-16
+md:w-20
+md:h-20
+lg:w-24
+lg:h-24
                   rounded-full
                   bg-[#18064f]/80
                   flex
@@ -70,7 +92,9 @@ const PuneriTvVideos = ({ videos = [] }) => {
                   group-hover:scale-110
                 "
               >
-                <span className="text-white text-4xl">
+                <span className="text-white text-2xl
+sm:text-3xl
+lg:text-4xl">
                   ▶
                 </span>
               </div>
@@ -80,16 +104,26 @@ const PuneriTvVideos = ({ videos = [] }) => {
           </div>
 
           {/* TITLE */}
-          <div className="relative bg-[#ff5a00] px-8 py-4">
+          <div className="relative bg-[#ff5a00] px-4
+sm:px-6
+lg:px-8
+
+py-3
+sm:py-4">
 
             <h3
               className="
                 text-white
                 italic
-                text-xl
-                md:text-2xl
-                leading-snug
-                pr-12
+                text-base
+sm:text-lg
+md:text-xl
+lg:text-2xl
+
+leading-snug
+
+pr-8
+sm:pr-12
               "
             >
               {video.name}
@@ -117,7 +151,13 @@ const PuneriTvVideos = ({ videos = [] }) => {
       ))}
 
       {!videos?.length && (
-        <div className="col-span-2 text-center text-3xl font-bold text-black">
+        <div className=" col-span-full
+    text-center
+    text-xl
+    sm:text-2xl
+    lg:text-3xl
+    font-bold
+    text-black">
           No Videos Found
         </div>
       )}

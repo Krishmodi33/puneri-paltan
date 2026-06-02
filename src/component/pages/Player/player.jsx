@@ -17,9 +17,11 @@ const Players = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <h1 className="text-4xl font-bold">Loading...</h1>
-      </div>
+      <div className="flex items-center justify-center min-h-screen px-4">
+  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
+    Loading...
+  </h1>
+</div>
     );
   }
 
@@ -33,7 +35,17 @@ const Players = () => {
 
       {/* ERROR */}
       {error && (
-        <div className="text-center py-10 text-red-500 text-xl">{error}</div>
+        <div className="text-center
+    py-8
+    sm:py-10
+
+    text-red-500
+
+    text-base
+    sm:text-lg
+    lg:text-xl
+
+    px-4">{error}</div>
       )}
 
       {/* RAIDERS */}

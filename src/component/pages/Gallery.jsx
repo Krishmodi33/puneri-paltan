@@ -92,7 +92,7 @@ const Gallery = () => {
         playerImage="/puneri-gallery-desk-banner-s12.png"
       />
 
-      <div className="bg-[#ececec] pt-16">
+      <div className="bg-[#ececec] pt-10 sm:pt-12 lg:pt-16">
 
         {/* SEASON BUTTONS */}
         <div className="flex justify-center gap-4 mb-16 flex-wrap">
@@ -102,12 +102,13 @@ const Gallery = () => {
               key={name}
               onClick={() => btnodSeason(seasons, name)}
               className={`
-                px-10
-                py-3
+                px-4 sm:px-6 lg:px-10
+py-2 sm:py-3
+text-sm sm:text-base
+tracking-[1px] sm:tracking-[3px]
                 uppercase
                 italic
                 font-bold
-                tracking-[3px]
                 text-white
                 transition-all
                 duration-300
@@ -126,7 +127,12 @@ const Gallery = () => {
         </div>
 
         {/* GALLERY GRID */}
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid
+grid-cols-1
+sm:grid-cols-2
+gap-6
+md:gap-8
+lg:gap-12">
 
           {currentSeason.map(
             ({ id, name, main_image }) => (
@@ -144,7 +150,10 @@ const Gallery = () => {
                     alt={name}
                     className="
                       w-full
-                      h-[480px]
+                      h-[260px]
+sm:h-[320px]
+md:h-[400px]
+lg:h-[480px]
                       object-cover
                       transition-all
                       duration-500
@@ -155,15 +164,21 @@ const Gallery = () => {
                 </div>
 
                 {/* ORANGE TITLE BAR */}
-                <div className="relative bg-[#ff5a00] px-8 py-3">
+                <div className="relative bg-[#ff5a00] px-4 sm:px-6 lg:px-8
+py-3">
 
                   <h3
                     className="
                       text-white
                       italic
                       uppercase
-                      text-2xl
-                      tracking-[2px]
+                     text-base
+sm:text-lg
+md:text-xl
+lg:text-2xl
+
+tracking-[1px]
+sm:tracking-[2px]
                       pr-16
                       leading-tight
                     "

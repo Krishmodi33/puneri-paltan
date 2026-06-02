@@ -106,11 +106,18 @@ const SingleGallery = () => {
       />
 
       <section className="bg-[#ececec] py-12">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <Link
             to="/gallery"
-            className="inline-block mb-8 text-[#ff5a00] font-bold hover:underline"
+            className="inline-block
+mb-6
+sm:mb-8
+text-sm
+sm:text-base
+text-[#ff5a00]
+font-bold
+hover:underline"
           >
             ← Back to Gallery
           </Link>
@@ -121,15 +128,30 @@ const SingleGallery = () => {
 
                 {/* TITLE */}
                 <div className="flex justify-center mb-12">
-                  <div className="bg-[#ff5a00] px-10 py-3">
-                    <h2 className="text-white text-3xl font-bold italic uppercase tracking-[3px]">
+                  <div className="bg-[#ff5a00] px-4 sm:px-6 lg:px-10 py-3">
+                    <h2 className="text-white
+text-lg
+sm:text-2xl
+lg:text-3xl
+font-bold
+italic
+uppercase
+tracking-[1px]
+sm:tracking-[3px]
+text-center">
                       {item.name}
                     </h2>
                   </div>
                 </div>
 
                 {/* IMAGES */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid
+grid-cols-1
+sm:grid-cols-2
+lg:grid-cols-3
+gap-4
+sm:gap-6
+lg:gap-8">
 
                   {item.match_images?.map((img, idx) => (
                     <div
@@ -144,7 +166,10 @@ const SingleGallery = () => {
                           alt={item.name}
                           className="
                             w-full
-                            h-[350px]
+                           h-[220px]
+sm:h-[280px]
+md:h-[320px]
+lg:h-[350px]
                             object-cover
                             transition-all
                             duration-500
@@ -170,17 +195,35 @@ const SingleGallery = () => {
 
       {/* MODAL */}
       {isModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center">
+        <div className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
 
           {/* CLOSE */}
           <button
             onClick={closeModal}
-            className="fixed top-36 right-8 z-[10000] text-white text-6xl hover:text-[#ff5a00]">
+            className="fixed
+top-4
+right-4
+sm:top-6
+sm:right-6
+z-[10000]
+text-white
+text-4xl
+sm:text-5xl
+md:text-6xl
+hover:text-[#ff5a00]">
             ×
           </button>
 
           {/* COUNTER */}
-          <div className="absolute top-6 left-8 text-white text-xl">
+          <div className="absolute
+top-4
+left-4
+sm:top-6
+sm:left-6
+text-white
+text-sm
+sm:text-lg
+md:text-xl">
             {index + 1} / {len}
           </div>
 
@@ -189,14 +232,18 @@ const SingleGallery = () => {
             onClick={backwIndex}
             className="absolute left-4 md:left-10"
           >
-            <IoIosArrowBack className="text-white text-6xl hover:text-[#ff5a00]" />
+            <IoIosArrowBack className="text-white text-4xl md:text-6xl hover:text-[#ff5a00]" />
           </button>
 
           {/* IMAGE */}
           <img
             src={selectedItem.match_images[index]}
             alt={selectedItem.name}
-            className="max-h-[85vh] max-w-[90vw] object-contain"
+            className="max-h-[75vh]
+sm:max-h-[80vh]
+md:max-h-[85vh]
+max-w-[95vw]
+object-contain"
           />
 
           {/* NEXT */}

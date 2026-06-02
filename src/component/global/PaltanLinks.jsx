@@ -10,7 +10,17 @@ const PaltanLinks = ({ links }) => {
           <Link
             key={title}
             to={link}
-            className="group relative h-[400px] overflow-hidden"
+            className="
+              group
+              relative
+
+              h-[220px]
+              sm:h-[280px]
+              md:h-[320px]
+              lg:h-[400px]
+
+              overflow-hidden
+            "
           >
 
             <img
@@ -28,19 +38,30 @@ const PaltanLinks = ({ links }) => {
 
             <div className="absolute inset-0 bg-black/45 group-hover:bg-black/25 transition-all duration-500" />
 
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center px-4">
+
               <h2
                 className="
                   text-white
-                  text-3xl
-                  md:text-5xl
+
+                  text-xl
+                  sm:text-3xl
+                  md:text-4xl
+                  lg:text-5xl
+
                   font-light
                   uppercase
-                  tracking-[3px]
+
+                  tracking-[1px]
+                  sm:tracking-[2px]
+                  lg:tracking-[3px]
+
+                  text-center
                 "
               >
                 {title}
               </h2>
+
             </div>
 
           </Link>

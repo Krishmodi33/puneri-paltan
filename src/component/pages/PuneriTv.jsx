@@ -1,9 +1,7 @@
 import HeroBanner from "../global/HeroBanner";
-import Footer from "../global/Footer.jsx";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getpuneritvSeasons } from "../redux/action/PuneriTv.action.js";
-import { Link } from "react-router-dom";
 import PaltanLinks from "../global/PaltanLinks";
 
 const PuneriTv = () => {
@@ -100,7 +98,7 @@ const PuneriTv = () => {
       const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
       const parsed = new URL(safeUrl);
       const videoId = extractYoutubeId(rawUrl);
-      console.log(videoId)
+      console.log(videoId);
 
       if (!videoId) return null;
 
@@ -142,143 +140,168 @@ const PuneriTv = () => {
   };
 
   const tvLinks = [
-  {
-    title: "GALLERY",
-    image: "/gallery-s12.png",
-    link: "/gallery",
-  },
-  {
-    title: "WALLPAPERS",
-    image: "/Wallpapers-s12.png",
-    link: "/wallpapers",
-  },
-  {
-    title: "BLOGS",
-    image: "/blogs-s12.png",
-    link: "/blogs",
-  },
-];
+    {
+      title: "GALLERY",
+      image: "/gallery-s12.png",
+      link: "/gallery",
+    },
+    {
+      title: "WALLPAPERS",
+      image: "/Wallpapers-s12.png",
+      link: "/wallpapers",
+    },
+    {
+      title: "BLOGS",
+      image: "/blogs-s12.png",
+      link: "/blogs",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[#0b0b0b] text-white">
-
-
-
-<HeroBanner
-  title="Puneri TV"
-  bannerImage="/puneri-tv-bg.jpg"
-  playerImage="/puneri-tv-desk-banner-s12.png"
-/>
-
+      <HeroBanner
+        title="Puneri TV"
+        bannerImage="/puneri-tv-bg.jpg"
+        playerImage="/puneri-tv-desk-banner-s12.png"
+      />
 
       <section className="bg-[#ececec] py-20">
+        {/* TABS */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10 sm:mb-16 px-4">
+          {seasonTabs.map((season, index) => (
+            <button
+              key={season.label}
+              onClick={() => setSelectedSeasonIndex(index)}
+              className={`
+           px-4
+  sm:px-6
+  lg:px-10
 
-  {/* TABS */}
-  <div className="flex justify-center gap-3 mb-16">
+  py-2
+  sm:py-3
 
-    {seasonTabs.map((season, index) => (
-      <button
-        key={season.label}
-        onClick={() => setSelectedSeasonIndex(index)}
-        className={`
-          px-10
-          py-3
-          text-white
-          uppercase
-          italic
-          font-bold
-          tracking-[3px]
-          transition-all
+  text-sm
+  sm:text-base
 
-          ${
-            selectedSeasonIndex === index
-              ? "bg-[#ff5a00]"
-              : "bg-[#b8b8c8]"
-          }
+  text-white
+  uppercase
+  italic
+  font-bold
+
+  tracking-[1px]
+  sm:tracking-[3px]
+
+  transition-all
+
+
+          ${selectedSeasonIndex === index ? "bg-[#ff5a00]" : "bg-[#b8b8c8]"}
         `}
-      >
-        {season.label}
-      </button>
-    ))}
+            >
+              {season.label}
+            </button>
+          ))}
+        </div>
 
-  </div>
-
-  {/* VIDEOS */}
-  {isLoading ? (
-    <div className="text-center text-3xl font-bold text-black">
-      Loading...
-    </div>
-  ) : currentSeason.length > 0 ? (
-
-    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-
-      {currentSeason.map((item) => {
-        const { id, name } = item;
-
-        return (
+        {/* VIDEOS */}
+        {isLoading ? (
+          <div className="text-center text-3xl font-bold text-black">
+            Loading...
+          </div>
+        ) : currentSeason.length > 0 ? (
           <div
-            key={id}
-            onClick={() => clickonplayBtn(item)}
-            className="group cursor-pointer"
+            className=" max-w-7xl
+    mx-auto
+
+    px-4
+    sm:px-6
+    lg:px-8
+
+    grid
+    grid-cols-1
+    md:grid-cols-2
+
+    gap-6
+    md:gap-8
+    lg:gap-12"
           >
+            {currentSeason.map((item) => {
+              const { id, name } = item;
 
-            {/* IMAGE */}
-            <div className="relative bg-black overflow-hidden">
-
-              <img
-                src={getThumbnailUrl(item)}
-                alt={name}
-                className="
+              return (
+                <div
+                  key={id}
+                  onClick={() => clickonplayBtn(item)}
+                  className="group cursor-pointer"
+                >
+                  {/* IMAGE */}
+                  <div className="relative bg-black overflow-hidden">
+                    <img
+                      src={getThumbnailUrl(item)}
+                      alt={name}
+                      className="
                   w-full
-                  h-[380px]
+                  h-[220px]
+sm:h-[280px]
+md:h-[320px]
+lg:h-[380px]
                   object-cover
                   transition-all
                   duration-500
                   group-hover:scale-105
                 "
-              />
+                    />
 
-              {/* PLAY BUTTON */}
-              <div className="absolute inset-0 flex items-center justify-center">
-
-                <div
-                  className="
-                    w-24
-                    h-24
+                    {/* PLAY BUTTON */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div
+                        className="
+                    w-14
+h-14
+sm:w-18
+sm:h-18
+md:w-20
+md:h-20
+lg:w-24
+lg:h-24
                     rounded-full
                     bg-[#12044f]/80
                     flex
                     items-center
                     justify-center
                   "
-                >
-                  <span className="text-white text-4xl">
-                    ▶
-                  </span>
-                </div>
+                      >
+                        <span
+                          className="text-white text-2xl
+sm:text-3xl
+lg:text-4xl"
+                        >
+                          ▶
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
-              </div>
-
-            </div>
-
-            {/* ORANGE TITLE BAR */}
-            <div className="relative bg-[#ff5a00] px-8 py-3">
-
-              <h3
-                className="
+                  {/* ORANGE TITLE BAR */}
+                  <div className="relative bg-[#ff5a00] px-4 sm:px-6 lg:px-8 py-3">
+                    <h3
+                      className="
                   text-white
                   italic
-                  text-xl
-                  tracking-[2px]
+                  text-base
+sm:text-lg
+lg:text-xl
+
+tracking-[1px]
+sm:tracking-[2px]
                   pr-12
                 "
-              >
-                {name}
-              </h3>
+                    >
+                      {name}
+                    </h3>
 
-              {/* DOUBLE LINES */}
-              <div
-                className="
+                    {/* DOUBLE LINES */}
+                    <div
+                      className="
                   absolute
                   right-4
                   top-0
@@ -286,32 +309,33 @@ const PuneriTv = () => {
                   flex
                   gap-2
                 "
-              >
-                <div className="w-2 h-full bg-white skew-x-[-15deg]"></div>
-                <div className="w-2 h-full bg-white skew-x-[-15deg]"></div>
-              </div>
-
-            </div>
-
+                    >
+                      <div className="w-2 h-full bg-white skew-x-[-15deg]"></div>
+                      <div className="w-2 h-full bg-white skew-x-[-15deg]"></div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
-
-    </div>
-
-  ) : (
-
-    <div className="text-center text-3xl font-bold text-black">
-      No Videos Found
-    </div>
-
-  )}
-
-</section>
+        ) : (
+          <div className="text-center text-3xl font-bold text-black">
+            No Videos Found
+          </div>
+        )}
+      </section>
 
       {selectedVideo && (
         <section
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          className="fixed
+inset-0
+z-[9999]
+flex
+items-center
+justify-center
+bg-black/90
+p-2
+sm:p-4"
           onClick={closeModal}
         >
           <div
@@ -320,7 +344,24 @@ const PuneriTv = () => {
           >
             <button
               onClick={closeModal}
-              className="absolute right-3 top-3 z-10 rounded-full bg-black/70 px-3 py-1 text-2xl text-white"
+              className="absolute
+right-2
+top-2
+sm:right-3
+sm:top-3
+
+z-10
+
+rounded-full
+bg-black/70
+
+px-3
+py-1
+
+text-xl
+sm:text-2xl
+
+text-white"
             >
               ×
             </button>
@@ -336,8 +377,7 @@ const PuneriTv = () => {
         </section>
       )}
 
-<PaltanLinks links={tvLinks} />
-
+      <PaltanLinks links={tvLinks} />
     </div>
   );
 };
