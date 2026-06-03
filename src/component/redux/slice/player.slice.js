@@ -18,41 +18,30 @@ const playerSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
-
     builder
 
       // PENDING
       .addCase(getPlayers.pending, (state) => {
-
         state.isLoading = true;
-
       })
 
       // SUCCESS
       .addCase(getPlayers.fulfilled, (state, action) => {
-
         state.isLoading = false;
 
-        state.raiders =
-          action.payload.raiders || [];
+        state.raiders = action.payload.raiders || [];
 
-        state.defenders =
-          action.payload.defenders || [];
+        state.defenders = action.payload.defenders || [];
 
-        state.allrounders =
-          action.payload.allrounders || [];
-
+        state.allrounders = action.payload.allrounders || [];
       })
 
       // FAILED
       .addCase(getPlayers.rejected, (state, action) => {
-
         state.isLoading = false;
 
         state.error = action.payload;
-
       });
-
   },
 });
 

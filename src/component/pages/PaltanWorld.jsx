@@ -3,14 +3,9 @@ import { Link } from "react-router-dom";
 const PaltanWorld = () => {
   return (
     <div className="bg-black text-white">
-
       <section className="bg-white">
-
         {/* HERO IMAGE */}
-        <Link
-          to="/puneri-tv"
-          className="block relative overflow-hidden group"
-        >
+        <Link to="/puneri-tv" className="block relative overflow-hidden group">
           <img
             src="/paltan-world-homepage_s12.png"
             alt="Paltan World"
@@ -25,17 +20,12 @@ const PaltanWorld = () => {
           />
 
           <div className="absolute inset-0 bg-black/20"></div>
-
         </Link>
 
         {/* BOTTOM GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2">
-
           {/* PUNERI TV */}
-          <Link
-            to="/puneri-tv"
-            className="relative overflow-hidden group"
-          >
+          <Link to="/puneri-tv" className="relative overflow-hidden group">
             <img
               src="/tv-s12.png"
               alt="Puneri TV"
@@ -77,10 +67,7 @@ const PaltanWorld = () => {
           </Link>
 
           {/* GALLERY */}
-          <Link
-            to="/gallery"
-            className="relative overflow-hidden group"
-          >
+          <Link to="/gallery" className="relative overflow-hidden group">
             <img
               src="/gallery-s12.png"
               alt="Gallery"
@@ -122,10 +109,7 @@ const PaltanWorld = () => {
           </Link>
 
           {/* WALLPAPERS */}
-          <Link
-            to="/wallpapers"
-            className="relative overflow-hidden group"
-          >
+          <Link to="/wallpapers" className="relative overflow-hidden group">
             <img
               src="/Wallpapers-s12.png"
               alt="Wallpapers"
@@ -168,11 +152,8 @@ const PaltanWorld = () => {
 
           {/* EMPTY BOX */}
           <div className="hidden md:block bg-[#efefef]"></div>
-
         </div>
-
       </section>
-
     </div>
   );
 };

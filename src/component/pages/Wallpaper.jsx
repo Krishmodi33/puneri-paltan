@@ -2,7 +2,6 @@ import HeroBanner from "../global/HeroBanner";
 import PaltanLinks from "../global/PaltanLinks";
 
 const Wallpaper = () => {
-
   const wallpaperLinks = [
     {
       title: "GALLERY",

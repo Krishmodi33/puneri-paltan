@@ -14,7 +14,6 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-[9999]">
-
       {/* Navbar */}
       <nav
         className="
@@ -129,16 +128,8 @@ export default function Header() {
         >
           {/* Header */}
           <div className="flex items-center justify-between">
-
-            <NavLink
-              to="/"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <img
-                src="/logo.gif"
-                alt="logo"
-                className="w-20 object-contain"
-              />
+            <NavLink to="/" onClick={() => setMobileMenuOpen(false)}>
+              <img src="/logo.gif" alt="logo" className="w-20 object-contain" />
             </NavLink>
 
             <button
@@ -147,12 +138,10 @@ export default function Header() {
             >
               <XMarkIcon className="h-8 w-8" />
             </button>
-
           </div>
 
           {/* Links */}
           <div className="mt-10 flex flex-col gap-6">
-
             {navigation.map((item) => (
               <NavLink
                 key={item.name}
@@ -171,11 +160,9 @@ export default function Header() {
                 {item.name}
               </NavLink>
             ))}
-
           </div>
         </DialogPanel>
       </Dialog>
-
     </header>
   );
 }

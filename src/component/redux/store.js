@@ -9,6 +9,6 @@ export const store = configureStore({
     player: playerReducer,
     singlePlayer: singlePlayerReducer,
     PuneriTvSeasons: PuneriTvReducer,
-    mainGallery : galleryReducer
+    mainGallery: galleryReducer,
   },
 });

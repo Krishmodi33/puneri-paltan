@@ -1,10 +1,6 @@
-const HeroBanner = ({
-  title,
-  playerImage,
-}) => {
+const HeroBanner = ({ title, playerImage }) => {
   return (
     <section className="relative min-h-[500px] lg:h-[70vh] overflow-hidden bg-black">
-
       {/* OVERLAY */}
       <div className="absolute inset-0 bg-black/40 z-10"></div>
 
@@ -75,7 +71,6 @@ const HeroBanner = ({
           object-contain
         "
       />
-
     </section>
   );
 };

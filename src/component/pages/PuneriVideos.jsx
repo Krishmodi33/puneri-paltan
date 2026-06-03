@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const PuneriTvVideos = ({ videos = [] }) => {
-
   const getYoutubeId = (url) => {
     if (!url) return null;
 
@@ -11,9 +10,7 @@ const PuneriTvVideos = ({ videos = [] }) => {
 
     const match = url.match(regExp);
 
-    return match && match[1].length === 11
-      ? match[1]
-      : null;
+    return match && match[1].length === 11 ? match[1] : null;
   };
 
   const getYoutubeThumbnail = (url) => {
@@ -25,7 +22,8 @@ const PuneriTvVideos = ({ videos = [] }) => {
   };
 
   return (
-    <div className="max-w-7xl
+    <div
+      className="max-w-7xl
     mx-auto
 
     px-4
@@ -38,10 +36,9 @@ const PuneriTvVideos = ({ videos = [] }) => {
 
     gap-6
     md:gap-8
-    lg:gap-14">
-
+    lg:gap-14"
+    >
       {videos?.map((video, index) => (
-
         <a
           key={video.id || index}
           href={video.url}
@@ -49,10 +46,8 @@ const PuneriTvVideos = ({ videos = [] }) => {
           rel="noreferrer"
           className="group block cursor-pointer"
         >
-
           {/* IMAGE */}
           <div className="relative overflow-hidden bg-black">
-
             <img
               src={getYoutubeThumbnail(video.url)}
               alt={video.name}
@@ -71,7 +66,6 @@ lg:h-[320px]
 
             {/* PLAY BUTTON */}
             <div className="absolute inset-0 flex items-center justify-center">
-
               <div
                 className="
                  w-14
@@ -92,25 +86,26 @@ lg:h-24
                   group-hover:scale-110
                 "
               >
-                <span className="text-white text-2xl
+                <span
+                  className="text-white text-2xl
 sm:text-3xl
-lg:text-4xl">
+lg:text-4xl"
+                >
                   ▶
                 </span>
               </div>
-
             </div>
-
           </div>
 
           {/* TITLE */}
-          <div className="relative bg-[#ff5a00] px-4
+          <div
+            className="relative bg-[#ff5a00] px-4
 sm:px-6
 lg:px-8
 
 py-3
-sm:py-4">
-
+sm:py-4"
+          >
             <h3
               className="
                 text-white
@@ -143,25 +138,23 @@ sm:pr-12
               <div className="w-2 h-full bg-white skew-x-[-15deg]"></div>
               <div className="w-2 h-full bg-white skew-x-[-15deg]"></div>
             </div>
-
           </div>
-
         </a>
-
       ))}
 
       {!videos?.length && (
-        <div className=" col-span-full
+        <div
+          className=" col-span-full
     text-center
     text-xl
     sm:text-2xl
     lg:text-3xl
     font-bold
-    text-black">
+    text-black"
+        >
           No Videos Found
         </div>
       )}
-
     </div>
   );
 };

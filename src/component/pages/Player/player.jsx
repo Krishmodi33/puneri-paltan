@@ -1,7 +1,7 @@
 import HeroBanner from "../../global/HeroBanner";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPlayers} from "../../redux/action/playerpage.action";
+import { getPlayers } from "../../redux/action/playerpage.action";
 import PlayerSection from "../Player/PlayerSection";
 
 const Players = () => {
@@ -18,24 +18,25 @@ const Players = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen px-4">
-  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
-    Loading...
-  </h1>
-</div>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center">
+          Loading...
+        </h1>
+      </div>
     );
   }
 
   return (
     <>
-<HeroBanner
-  title="Players"
-  bannerImage="/players-bg.jpg"
-  playerImage="/players_page_banner_desktop_S12.png"
-/>
+      <HeroBanner
+        title="Players"
+        bannerImage="/players-bg.jpg"
+        playerImage="/players_page_banner_desktop_S12.png"
+      />
 
       {/* ERROR */}
       {error && (
-        <div className="text-center
+        <div
+          className="text-center
     py-8
     sm:py-10
 
@@ -45,7 +46,10 @@ const Players = () => {
     sm:text-lg
     lg:text-xl
 
-    px-4">{error}</div>
+    px-4"
+        >
+          {error}
+        </div>
       )}
 
       {/* RAIDERS */}

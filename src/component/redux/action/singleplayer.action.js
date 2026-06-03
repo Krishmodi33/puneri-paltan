@@ -6,9 +6,7 @@ export const getSinglePlayer = createAsyncThunk(
 
   async (id, thunkAPI) => {
     try {
-      const res = await myAxios.get(
-        `/single_player?id=${id}`
-      );
+      const res = await myAxios.get(`/single_player?id=${id}`);
 
       const data = res?.data?.data ?? res?.data;
       const playerData = Array.isArray(data) ? data[0] : data;
@@ -16,8 +14,8 @@ export const getSinglePlayer = createAsyncThunk(
       return playerData;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || error.message
+        error.response?.data?.message || error.message,
       );
     }
-  }
+  },
 );

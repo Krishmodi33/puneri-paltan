@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 const PaltanLinks = ({ links }) => {
   return (
     <section className="w-full">
-
       <div className="grid grid-cols-1 md:grid-cols-3">
-
         {links.map(({ title, image, link }) => (
           <Link
             key={title}
@@ -22,7 +20,6 @@ const PaltanLinks = ({ links }) => {
               overflow-hidden
             "
           >
-
             <img
               src={image}
               alt={title}
@@ -39,7 +36,6 @@ const PaltanLinks = ({ links }) => {
             <div className="absolute inset-0 bg-black/45 group-hover:bg-black/25 transition-all duration-500" />
 
             <div className="absolute inset-0 flex items-center justify-center px-4">
-
               <h2
                 className="
                   text-white
@@ -61,14 +57,10 @@ const PaltanLinks = ({ links }) => {
               >
                 {title}
               </h2>
-
             </div>
-
           </Link>
         ))}
-
       </div>
-
     </section>
   );
 };

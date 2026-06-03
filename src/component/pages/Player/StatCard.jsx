@@ -1,7 +1,6 @@
 const StatCard = ({ value, label }) => {
   return (
     <div className="text-center w-full">
-
       <div
         className="
           bg-white
@@ -17,7 +16,6 @@ const StatCard = ({ value, label }) => {
           w-full
         "
       >
-
         <span
           className="
             text-2xl
@@ -30,7 +28,6 @@ const StatCard = ({ value, label }) => {
         >
           {value}
         </span>
-
       </div>
 
       <p
@@ -52,7 +49,6 @@ const StatCard = ({ value, label }) => {
       >
         {label}
       </p>
-
     </div>
   );
 };

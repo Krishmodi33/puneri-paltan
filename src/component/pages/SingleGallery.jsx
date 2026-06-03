@@ -32,8 +32,8 @@ const SingleGallery = () => {
         const items = Array.isArray(payload)
           ? payload
           : payload
-          ? [payload]
-          : [];
+            ? [payload]
+            : [];
 
         setGalleryData(items);
       } catch (err) {
@@ -74,9 +74,7 @@ const SingleGallery = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white">
-        <h1 className="text-3xl font-bold">
-          Loading Gallery...
-        </h1>
+        <h1 className="text-3xl font-bold">Loading Gallery...</h1>
       </div>
     );
   }
@@ -84,14 +82,9 @@ const SingleGallery = () => {
   if (error) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-        <h1 className="text-3xl font-bold text-red-500">
-          {error}
-        </h1>
+        <h1 className="text-3xl font-bold text-red-500">{error}</h1>
 
-        <Link
-          to="/gallery"
-          className="mt-6 text-orange-500 hover:underline"
-        >
+        <Link to="/gallery" className="mt-6 text-orange-500 hover:underline">
           ← Back to Gallery
         </Link>
       </div>
@@ -107,7 +100,6 @@ const SingleGallery = () => {
 
       <section className="bg-[#ececec] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
           <Link
             to="/gallery"
             className="inline-block
@@ -125,11 +117,11 @@ hover:underline"
           {galleryData?.length > 0 ? (
             galleryData.map((item) => (
               <div key={item.id}>
-
                 {/* TITLE */}
                 <div className="flex justify-center mb-12">
                   <div className="bg-[#ff5a00] px-4 sm:px-6 lg:px-10 py-3">
-                    <h2 className="text-white
+                    <h2
+                      className="text-white
 text-lg
 sm:text-2xl
 lg:text-3xl
@@ -138,21 +130,23 @@ italic
 uppercase
 tracking-[1px]
 sm:tracking-[3px]
-text-center">
+text-center"
+                    >
                       {item.name}
                     </h2>
                   </div>
                 </div>
 
                 {/* IMAGES */}
-                <div className="grid
+                <div
+                  className="grid
 grid-cols-1
 sm:grid-cols-2
 lg:grid-cols-3
 gap-4
 sm:gap-6
-lg:gap-8">
-
+lg:gap-8"
+                >
                   {item.match_images?.map((img, idx) => (
                     <div
                       key={idx}
@@ -160,7 +154,6 @@ lg:gap-8">
                       className="group cursor-pointer"
                     >
                       <div className="overflow-hidden bg-black">
-
                         <img
                           src={img}
                           alt={item.name}
@@ -176,13 +169,10 @@ lg:h-[350px]
                             group-hover:scale-105
                           "
                         />
-
                       </div>
                     </div>
                   ))}
-
                 </div>
-
               </div>
             ))
           ) : (
@@ -196,7 +186,6 @@ lg:h-[350px]
       {/* MODAL */}
       {isModalOpen && selectedItem && (
         <div className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
-
           {/* CLOSE */}
           <button
             onClick={closeModal}
@@ -210,12 +199,14 @@ text-white
 text-4xl
 sm:text-5xl
 md:text-6xl
-hover:text-[#ff5a00]">
+hover:text-[#ff5a00]"
+          >
             ×
           </button>
 
           {/* COUNTER */}
-          <div className="absolute
+          <div
+            className="absolute
 top-4
 left-4
 sm:top-6
@@ -223,15 +214,13 @@ sm:left-6
 text-white
 text-sm
 sm:text-lg
-md:text-xl">
+md:text-xl"
+          >
             {index + 1} / {len}
           </div>
 
           {/* PREV */}
-          <button
-            onClick={backwIndex}
-            className="absolute left-4 md:left-10"
-          >
+          <button onClick={backwIndex} className="absolute left-4 md:left-10">
             <IoIosArrowBack className="text-white text-4xl md:text-6xl hover:text-[#ff5a00]" />
           </button>
 
@@ -247,19 +236,11 @@ object-contain"
           />
 
           {/* NEXT */}
-          <button
-            onClick={foewIndex}
-            className="absolute right-4 md:right-10"
-          >
+          <button onClick={foewIndex} className="absolute right-4 md:right-10">
             <IoIosArrowForward className="text-white text-6xl hover:text-[#ff5a00]" />
           </button>
-
         </div>
-
-        
       )}
-
-      
     </>
   );
 };

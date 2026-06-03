@@ -6,22 +6,14 @@ import { getPlayers } from "../redux/action/player.action";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Hero = () => {
-
   const dispatch = useDispatch();
 
-  const {
-    raiders,
-    defenders,
-    allrounders,
-    isLoading,
-  } = useSelector((state) => state.player);
+  const { raiders, defenders, allrounders, isLoading } = useSelector(
+    (state) => state.player,
+  );
 
   // COMBINED ARRAY
-  const players = [
-    ...raiders,
-    ...defenders,
-    ...allrounders,
-  ];
+  const players = [...raiders, ...defenders, ...allrounders];
 
   const [current, setCurrent] = useState(0);
 
@@ -32,71 +24,56 @@ const Hero = () => {
 
   // NEXT SLIDE
   const nextSlide = () => {
-
     if (players.length <= 3) return;
 
-    setCurrent((prev) =>
-      prev >= players.length - 3 ? 0 : prev + 1
-    );
+    setCurrent((prev) => (prev >= players.length - 3 ? 0 : prev + 1));
   };
 
   // PREVIOUS SLIDE
   const prevSlide = () => {
-
     if (players.length <= 3) return;
 
-    setCurrent((prev) =>
-      prev === 0 ? players.length - 3 : prev - 1
-    );
+    setCurrent((prev) => (prev === 0 ? players.length - 3 : prev - 1));
   };
 
   // LOADING
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-
-        <h1 className="text-white text-5xl font-bold">
-          Loading...
-        </h1>
-
+        <h1 className="text-white text-5xl font-bold">Loading...</h1>
       </div>
     );
   }
 
   return (
     <>
-
       {/* HERO BANNER */}
       <div className="w-full h-[60vh] sm:h-[80vh] lg:h-screen">
-
         <img
           src="/home-banner-new-design-s12.webp"
           alt="hero"
           className="w-full h-full object-cover"
         />
-
       </div>
 
       {/* MAIN SECTION */}
       <section className="relative min-h-screen lg:min-h-[170vh] bg-black">
+        {/* BACKGROUND */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/description-bg-new.jpg')",
+          }}
+        />
 
-  {/* BACKGROUND */}
-  <div
-    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style={{
-      backgroundImage: "url('/description-bg-new.jpg')",
-    }}
-  />
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-black/50" />
 
-  {/* OVERLAY */}
-  <div className="absolute inset-0 bg-black/50" />
-
-  {/* CONTENT */}
-  <div className="relative z-10 flex flex-col items-center pt-12 sm:pt-20 px-4 sm:px-6">
-
-    {/* SCROLL */}
-    <div
-      className="
+        {/* CONTENT */}
+        <div className="relative z-10 flex flex-col items-center pt-12 sm:pt-20 px-4 sm:px-6">
+          {/* SCROLL */}
+          <div
+            className="
         flex
         items-center
 
@@ -119,15 +96,14 @@ const Hero = () => {
 
         uppercase
       "
-    >
-      SCROLL
-    </div>
+          >
+            SCROLL
+          </div>
 
-    {/* DESCRIPTION */}
-    <div className="max-w-7xl flex justify-center text-center mb-16 sm:mb-24">
-
-      <h1
-        className="
+          {/* DESCRIPTION */}
+          <div className="max-w-7xl flex justify-center text-center mb-16 sm:mb-24">
+            <h1
+              className="
           text-orange-500
           font-black
           uppercase
@@ -139,24 +115,21 @@ const Hero = () => {
           md:text-3xl
           lg:text-5xl
         "
-      >
-        Puneri Paltan is currently one of the top performing teams in the
-        Pro Kabaddi League. With a mix of unstoppable energy, honed-out
-        skills and steely nerves, here's a force that consistently looks
-        forward to perform better, challenge its opponents and make a
-        difference.
-      </h1>
+            >
+              Puneri Paltan is currently one of the top performing teams in the
+              Pro Kabaddi League. With a mix of unstoppable energy, honed-out
+              skills and steely nerves, here's a force that consistently looks
+              forward to perform better, challenge its opponents and make a
+              difference.
+            </h1>
+          </div>
 
-    </div>
-
-    {/* PLAYERS SECTION */}
-    <div className="flex flex-col lg:flex-row items-center w-full">
-
-      {/* LEFT TITLE */}
-      <div className="w-full lg:w-[20%] text-center lg:text-left mb-10 lg:mb-0">
-
-        <h1
-          className="
+          {/* PLAYERS SECTION */}
+          <div className="flex flex-col lg:flex-row items-center w-full">
+            {/* LEFT TITLE */}
+            <div className="w-full lg:w-[20%] text-center lg:text-left mb-10 lg:mb-0">
+              <h1
+                className="
             text-orange-500
 
             text-4xl
@@ -167,15 +140,14 @@ const Hero = () => {
             font-black
             uppercase
           "
-        >
-          Players
-        </h1>
+              >
+                Players
+              </h1>
+            </div>
 
-      </div>
-
-      {/* PLAYER CARDS */}
-      <div
-        className="
+            {/* PLAYER CARDS */}
+            <div
+              className="
           w-full
           lg:w-[80%]
 
@@ -190,58 +162,54 @@ const Hero = () => {
           sm:gap-6
           lg:gap-8
         "
-      >
+            >
+              {players?.slice(current, current + 3).map((player, index) => (
+                <div
+                  key={player.id}
+                  className={`relative flex flex-col items-center transition-all duration-500 ${
+                    index === 0
+                      ? "scale-100 opacity-100"
+                      : "scale-75 opacity-40"
+                  }`}
+                >
+                  {/* GLOW */}
+                  <div
+                    className={`absolute rounded-full bg-orange-500/20 blur-3xl ${
+                      index === 0
+                        ? "w-[220px] h-[220px] sm:w-[320px] sm:h-[320px]"
+                        : "w-[180px] h-[180px] sm:w-[240px] sm:h-[240px]"
+                    }`}
+                  />
 
-        {players?.slice(current, current + 3).map((player, index) => (
+                  {/* PLAYER IMAGE */}
+                  <img
+                    src={player.profile_image}
+                    alt={player.name}
+                    className={`relative z-10 object-contain ${
+                      index === 0
+                        ? "w-[140px] sm:w-[180px] lg:w-[250px]"
+                        : "w-[120px] sm:w-[180px] lg:w-[280px]"
+                    }`}
+                  />
 
-          <div
-            key={player.id}
-            className={`relative flex flex-col items-center transition-all duration-500 ${
-              index === 0
-                ? "scale-100 opacity-100"
-                : "scale-75 opacity-40"
-            }`}
-          >
+                  {/* PLAYER INFO */}
+                  <div className="relative z-10 text-center -mt-4 sm:-mt-8">
+                    {/* NAME */}
+                    <h2
+                      className={`text-white uppercase tracking-wide ${
+                        index === 0
+                          ? "text-2xl sm:text-4xl lg:text-6xl font-light"
+                          : "text-lg sm:text-2xl"
+                      }`}
+                    >
+                      {player.name}
+                    </h2>
 
-            {/* GLOW */}
-            <div
-              className={`absolute rounded-full bg-orange-500/20 blur-3xl ${
-                index === 0
-                  ? "w-[220px] h-[220px] sm:w-[320px] sm:h-[320px]"
-                  : "w-[180px] h-[180px] sm:w-[240px] sm:h-[240px]"
-              }`}
-            />
-
-            {/* PLAYER IMAGE */}
-            <img
-              src={player.profile_image}
-              alt={player.name}
-              className={`relative z-10 object-contain ${
-                index === 0
-                  ? "w-[140px] sm:w-[180px] lg:w-[250px]"
-                  : "w-[120px] sm:w-[180px] lg:w-[280px]"
-              }`}
-            />
-
-            {/* PLAYER INFO */}
-            <div className="relative z-10 text-center -mt-4 sm:-mt-8">
-
-              {/* NAME */}
-              <h2
-                className={`text-white uppercase tracking-wide ${
-                  index === 0
-                    ? "text-2xl sm:text-4xl lg:text-6xl font-light"
-                    : "text-lg sm:text-2xl"
-                }`}
-              >
-                {player.name}
-              </h2>
-
-              {/* POSITION */}
-              {index === 0 && (
-                <>
-                  <p
-                    className="
+                    {/* POSITION */}
+                    {index === 0 && (
+                      <>
+                        <p
+                          className="
                       text-orange-500
 
                       text-sm
@@ -254,13 +222,13 @@ const Hero = () => {
                       tracking-[2px]
                       sm:tracking-[3px]
                     "
-                  >
-                    {player.position}
-                  </p>
+                        >
+                          {player.position}
+                        </p>
 
-                  {/* BUTTON */}
-                  <button
-                    className="
+                        {/* BUTTON */}
+                        <button
+                          className="
                       mt-6
                       sm:mt-8
 
@@ -295,27 +263,20 @@ const Hero = () => {
                       transition
                       duration-300
                     "
-                  >
-                    <span className="block skew-x-[20deg]">
-                      Enter
-                    </span>
-                  </button>
-                </>
-              )}
-
+                        >
+                          <span className="block skew-x-[20deg]">Enter</span>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-
           </div>
 
-        ))}
-
-      </div>
-
-    </div>
-
-    {/* BUTTONS */}
-    <div
-      className="
+          {/* BUTTONS */}
+          <div
+            className="
         w-full
         flex
 
@@ -330,36 +291,30 @@ const Hero = () => {
         pr-0
         lg:pr-10
       "
-    >
+          >
+            <button
+              onClick={prevSlide}
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-orange-500 transition flex items-center justify-center"
+            >
+              <ChevronLeft className="text-black" />
+            </button>
 
-      <button
-        onClick={prevSlide}
-        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-orange-500 transition flex items-center justify-center"
-      >
-        <ChevronLeft className="text-black" />
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-orange-500 transition flex items-center justify-center"
-      >
-        <ChevronRight className="text-black" />
-      </button>
-
-    </div>
-
-  </div>
-
+            <button
+              onClick={nextSlide}
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 hover:bg-orange-500 transition flex items-center justify-center"
+            >
+              <ChevronRight className="text-black" />
+            </button>
+          </div>
+        </div>
       </section>
 
-{/* WHITE SECTION */}
-<section className="relative bg-[#f5f5f5] pt-32 sm:pt-40 lg:pt-72 pb-12">
-
-  {/* FLOATING CARD */}
-  <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-[35%] lg:-translate-y-[45%]">
-
-    <div
-      className="
+      {/* WHITE SECTION */}
+      <section className="relative bg-[#f5f5f5] pt-32 sm:pt-40 lg:pt-72 pb-12">
+        {/* FLOATING CARD */}
+        <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-[35%] lg:-translate-y-[45%]">
+          <div
+            className="
         relative
 
         w-[95vw]
@@ -369,31 +324,28 @@ const Hero = () => {
         sm:min-h-[280px]
         lg:h-[340px]
       "
-    >
+          >
+            {/* LEFT SHAPE */}
+            <div
+              className="absolute left-0 top-0 h-full w-[55%] bg-[#2d2623]"
+              style={{
+                clipPath: "polygon(10% 0%, 100% 0%, 85% 100%, 0% 100%)",
+              }}
+            />
 
-      {/* LEFT SHAPE */}
-      <div
-        className="absolute left-0 top-0 h-full w-[55%] bg-[#2d2623]"
-        style={{
-          clipPath:
-            "polygon(10% 0%, 100% 0%, 85% 100%, 0% 100%)",
-        }}
-      />
+            {/* RIGHT SHAPE */}
+            <div
+              className="absolute right-0 top-0 h-full w-[55%] bg-black"
+              style={{
+                clipPath: "polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              }}
+            />
 
-      {/* RIGHT SHAPE */}
-      <div
-        className="absolute right-0 top-0 h-full w-[55%] bg-black"
-        style={{
-          clipPath:
-            "polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        }}
-      />
-
-      {/* PLAYER */}
-      <img
-        src="/buy-tickets-homepage_s12.png"
-        alt="player"
-        className="
+            {/* PLAYER */}
+            <img
+              src="/buy-tickets-homepage_s12.png"
+              alt="player"
+              className="
           absolute
           left-2
           sm:left-8
@@ -408,11 +360,11 @@ const Hero = () => {
 
           object-contain
         "
-      />
+            />
 
-      {/* BUTTON */}
-      <button
-        className="
+            {/* BUTTON */}
+            <button
+              className="
           absolute
           left-1/2
           top-1/2
@@ -450,17 +402,15 @@ const Hero = () => {
 
           whitespace-nowrap
         "
-      >
-        <span className="block skew-x-[20deg]">
-          Buy Tickets ›
-        </span>
-      </button>
+            >
+              <span className="block skew-x-[20deg]">Buy Tickets ›</span>
+            </button>
 
-      {/* TICKET IMAGE */}
-      <img
-        src="/tickets.png"
-        alt="ticket"
-        className="
+            {/* TICKET IMAGE */}
+            <img
+              src="/tickets.png"
+              alt="ticket"
+              className="
           absolute
           right-2
           sm:right-6
@@ -477,22 +427,18 @@ const Hero = () => {
           md:w-[260px]
           lg:w-[420px]
         "
-      />
+            />
+          </div>
+        </div>
+      </section>
 
-    </div>
-
-  </div>
-
-</section>
-
-<section>
-  <div className="relative overflow-hidden">
-
-    {/* BACKGROUND IMAGE */}
-    <img
-      src="/paltan-world-homepage_s12.png"
-      alt="hero"
-      className="
+      <section>
+        <div className="relative overflow-hidden">
+          {/* BACKGROUND IMAGE */}
+          <img
+            src="/paltan-world-homepage_s12.png"
+            alt="hero"
+            className="
         w-full
         h-[350px]
         sm:h-[500px]
@@ -501,14 +447,13 @@ const Hero = () => {
         object-cover
         block
       "
-    />
+          />
 
-    {/* OVERLAY CONTENT */}
-    <div className="absolute inset-0 z-20">
-
-      {/* TITLE */}
-      <div
-        className="
+          {/* OVERLAY CONTENT */}
+          <div className="absolute inset-0 z-20">
+            {/* TITLE */}
+            <div
+              className="
           absolute
 
           right-4
@@ -523,11 +468,10 @@ const Hero = () => {
           text-left
           uppercase
         "
-      >
-
-        {/* PALTAN */}
-        <h1
-          className="
+            >
+              {/* PALTAN */}
+              <h1
+                className="
             text-[36px]
             sm:text-[60px]
             md:text-[80px]
@@ -540,13 +484,13 @@ const Hero = () => {
             sm:tracking-[-4px]
             lg:tracking-[-8px]
           "
-        >
-          PALTAN
-        </h1>
+              >
+                PALTAN
+              </h1>
 
-        {/* WORLD */}
-        <h1
-          className="
+              {/* WORLD */}
+              <h1
+                className="
             absolute
 
             right-2
@@ -569,15 +513,14 @@ const Hero = () => {
             sm:tracking-[-4px]
             lg:tracking-[-8px]
           "
-        >
-          WORLD
-        </h1>
+              >
+                WORLD
+              </h1>
+            </div>
 
-      </div>
-
-      {/* BUTTON */}
-      <button
-        className="
+            {/* BUTTON */}
+            <button
+              className="
           absolute
 
           right-4
@@ -621,23 +564,18 @@ const Hero = () => {
           duration-300
           hover:scale-105
         "
-      >
-        <span className="block skew-x-[20deg]">
-          Enter
-        </span>
-      </button>
+            >
+              <span className="block skew-x-[20deg]">Enter</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
-    </div>
-
-  </div>
-</section>
-
-{/* NEWS SECTION */}
-<section className="relative overflow-hidden bg-black py-12 sm:py-16 lg:py-24">
-
-  {/* ORANGE SHAPE */}
-  <div
-    className="
+      {/* NEWS SECTION */}
+      <section className="relative overflow-hidden bg-black py-12 sm:py-16 lg:py-24">
+        {/* ORANGE SHAPE */}
+        <div
+          className="
       absolute
       left-0
       top-0
@@ -651,14 +589,14 @@ const Hero = () => {
 
       bg-[#ff7300]
     "
-    style={{
-      clipPath: "polygon(0 0, 100% 0, 85% 100%, 0 80%)",
-    }}
-  />
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 85% 100%, 0 80%)",
+          }}
+        />
 
-  {/* BLACK SHAPE */}
-  <div
-    className="
+        {/* BLACK SHAPE */}
+        <div
+          className="
       absolute
       right-0
       bottom-0
@@ -672,16 +610,15 @@ const Hero = () => {
 
       bg-black
     "
-    style={{
-      clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0 100%)",
-    }}
-  />
+          style={{
+            clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0 100%)",
+          }}
+        />
 
-  {/* MAIN CARD */}
-  <div className="relative z-20 flex justify-center px-4">
-
-    <div
-      className="
+        {/* MAIN CARD */}
+        <div className="relative z-20 flex justify-center px-4">
+          <div
+            className="
         relative
 
         w-full
@@ -690,13 +627,12 @@ const Hero = () => {
 
         overflow-hidden
       "
-    >
-
-      {/* IMAGE */}
-      <img
-        src="/news-banner.jpg"
-        alt="news"
-        className="
+          >
+            {/* IMAGE */}
+            <img
+              src="/news-banner.jpg"
+              alt="news"
+              className="
           w-full
 
           h-[280px]
@@ -706,17 +642,16 @@ const Hero = () => {
 
           object-cover
         "
-      />
+            />
 
-      {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/45"></div>
+            {/* DARK OVERLAY */}
+            <div className="absolute inset-0 bg-black/45"></div>
 
-      {/* CONTENT */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center uppercase px-4">
-
-        {/* TOP TITLE */}
-        <h1
-          className="
+            {/* CONTENT */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center uppercase px-4">
+              {/* TOP TITLE */}
+              <h1
+                className="
             text-[32px]
             sm:text-[50px]
             md:text-[70px]
@@ -730,13 +665,13 @@ const Hero = () => {
 
             text-[#ff7300]
           "
-        >
-          Puneri Paltan
-        </h1>
+              >
+                Puneri Paltan
+              </h1>
 
-        {/* BOTTOM TITLE */}
-        <h1
-          className="
+              {/* BOTTOM TITLE */}
+              <h1
+                className="
             -mt-1
             sm:-mt-2
 
@@ -753,13 +688,13 @@ const Hero = () => {
 
             text-white
           "
-        >
-          In The News
-        </h1>
+              >
+                In The News
+              </h1>
 
-        {/* BUTTON */}
-        <button
-          className="
+              {/* BUTTON */}
+              <button
+                className="
             mt-6
             sm:mt-8
             lg:mt-12
@@ -795,21 +730,16 @@ const Hero = () => {
             duration-300
             hover:scale-105
           "
-        >
-          <span className="block skew-x-[20deg]">
-            Enter
-          </span>
-        </button>
+              >
+                <span className="block skew-x-[20deg]">Enter</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-  {/* RIGHT LINE */}
-  <div
-    className="
+        {/* RIGHT LINE */}
+        <div
+          className="
       absolute
 
       right-2
@@ -828,18 +758,15 @@ const Hero = () => {
 
       bg-[#ff7300]
     "
-  ></div>
+        ></div>
+      </section>
 
-</section>
-
-{/* PARTNERS SECTION */}
-<section className="relative bg-[#f3f3f3] pt-24 sm:pt-32 lg:pt-40 pb-12 sm:pb-16 lg:pb-20">
-
-  {/* NEWSLETTER BAR */}
-  <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-1/2">
-
-    <div
-      className="
+      {/* PARTNERS SECTION */}
+      <section className="relative bg-[#f3f3f3] pt-24 sm:pt-32 lg:pt-40 pb-12 sm:pb-16 lg:pb-20">
+        {/* NEWSLETTER BAR */}
+        <div className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="
         w-[95vw]
         max-w-[1200px]
 
@@ -863,12 +790,12 @@ const Hero = () => {
 
         shadow-xl
       "
-      style={{
-        clipPath: "polygon(3% 0%, 100% 0%, 98% 100%, 0% 100%)",
-      }}
-    >
-      <h2
-        className="
+            style={{
+              clipPath: "polygon(3% 0%, 100% 0%, 98% 100%, 0% 100%)",
+            }}
+          >
+            <h2
+              className="
           text-white
           font-bold
           uppercase
@@ -879,16 +806,15 @@ const Hero = () => {
           sm:text-2xl
           lg:text-3xl
         "
-      >
-        Subscribe To Our Newsletter
-      </h2>
+            >
+              Subscribe To Our Newsletter
+            </h2>
 
-      <div className="flex w-full lg:w-auto">
-
-        <input
-          type="email"
-          placeholder="Enter your email-id"
-          className="
+            <div className="flex w-full lg:w-auto">
+              <input
+                type="email"
+                placeholder="Enter your email-id"
+                className="
             flex-1
             lg:w-[350px]
 
@@ -901,10 +827,10 @@ const Hero = () => {
             bg-white
             text-gray-700
           "
-        />
+              />
 
-        <button
-          className="
+              <button
+                className="
             bg-gradient-to-r
             from-[#f03a00]
             to-[#ff9f43]
@@ -916,21 +842,17 @@ const Hero = () => {
             font-bold
             italic
           "
-        >
-          Go
-        </button>
+              >
+                Go
+              </button>
+            </div>
+          </div>
+        </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-  {/* PARTNERS TITLE */}
-  <div className="pt-20 sm:pt-24 text-center">
-
-    <h1
-      className="
+        {/* PARTNERS TITLE */}
+        <div className="pt-20 sm:pt-24 text-center">
+          <h1
+            className="
         text-[42px]
         sm:text-[70px]
         md:text-[90px]
@@ -940,19 +862,17 @@ const Hero = () => {
         uppercase
         text-[#ff7300]
       "
-    >
-      Partners
-    </h1>
+          >
+            Partners
+          </h1>
 
-    <div className="mt-12 sm:mt-16 lg:mt-20 flex flex-col items-center">
-
-      {/* Principal Partner */}
-      <div className="text-center">
-
-        <img
-          src="/force_motors.png"
-          alt="Force Motors"
-          className="
+          <div className="mt-12 sm:mt-16 lg:mt-20 flex flex-col items-center">
+            {/* Principal Partner */}
+            <div className="text-center">
+              <img
+                src="/force_motors.png"
+                alt="Force Motors"
+                className="
             h-16
             sm:h-20
             lg:h-28
@@ -960,10 +880,10 @@ const Hero = () => {
             object-contain
             mx-auto
           "
-        />
+              />
 
-        <p
-          className="
+              <p
+                className="
             mt-4
 
             text-gray-700
@@ -975,15 +895,14 @@ const Hero = () => {
             tracking-[2px]
             lg:tracking-[3px]
           "
-        >
-          Principal Partner
-        </p>
+              >
+                Principal Partner
+              </p>
+            </div>
 
-      </div>
-
-      {/* Associate Partners */}
-      <div
-        className="
+            {/* Associate Partners */}
+            <div
+              className="
           mt-10
           sm:mt-12
           lg:mt-16
@@ -998,14 +917,12 @@ const Hero = () => {
           sm:gap-16
           lg:gap-28
         "
-      >
-
-        <div className="text-center">
-
-          <img
-            src="/stihl-logo.png"
-            alt="Stihl"
-            className="
+            >
+              <div className="text-center">
+                <img
+                  src="/stihl-logo.png"
+                  alt="Stihl"
+                  className="
               h-12
               sm:h-14
               lg:h-16
@@ -1013,10 +930,10 @@ const Hero = () => {
               object-contain
               mx-auto
             "
-          />
+                />
 
-          <p
-            className="
+                <p
+                  className="
               mt-4
 
               text-gray-700
@@ -1028,20 +945,18 @@ const Hero = () => {
               leading-tight
               tracking-[2px]
             "
-          >
-            Associate-
-            <br />
-            Partner
-          </p>
+                >
+                  Associate-
+                  <br />
+                  Partner
+                </p>
+              </div>
 
-        </div>
-
-        <div className="text-center">
-
-          <img
-            src="/navitas_sponsor.webp"
-            alt="Navitas Solar"
-            className="
+              <div className="text-center">
+                <img
+                  src="/navitas_sponsor.webp"
+                  alt="Navitas Solar"
+                  className="
               h-12
               sm:h-14
               lg:h-16
@@ -1049,10 +964,10 @@ const Hero = () => {
               object-contain
               mx-auto
             "
-          />
+                />
 
-          <p
-            className="
+                <p
+                  className="
               mt-4
 
               text-gray-700
@@ -1064,23 +979,20 @@ const Hero = () => {
               leading-tight
               tracking-[2px]
             "
-          >
-            Associate-
-            <br />
-            Partner
-          </p>
+                >
+                  Associate-
+                  <br />
+                  Partner
+                </p>
+              </div>
+            </div>
 
-        </div>
-
-      </div>
-
-      {/* Co Partner */}
-      <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
-
-        <img
-          src="/paras.webp"
-          alt="Paras Buildtech"
-          className="
+            {/* Co Partner */}
+            <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+              <img
+                src="/paras.webp"
+                alt="Paras Buildtech"
+                className="
             h-14
             sm:h-16
             lg:h-20
@@ -1088,10 +1000,10 @@ const Hero = () => {
             object-contain
             mx-auto
           "
-        />
+              />
 
-        <p
-          className="
+              <p
+                className="
             mt-4
 
             text-gray-700
@@ -1102,19 +1014,17 @@ const Hero = () => {
 
             tracking-[2px]
           "
-        >
-          Co-Partner
-        </p>
+              >
+                Co-Partner
+              </p>
+            </div>
 
-      </div>
-
-      {/* Wellness Partner */}
-      <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
-
-        <img
-          src="/better.webp"
-          alt="BetterAlt"
-          className="
+            {/* Wellness Partner */}
+            <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+              <img
+                src="/better.webp"
+                alt="BetterAlt"
+                className="
             h-10
             sm:h-12
             lg:h-14
@@ -1122,10 +1032,10 @@ const Hero = () => {
             object-contain
             mx-auto
           "
-        />
+              />
 
-        <p
-          className="
+              <p
+                className="
             mt-4
 
             text-gray-700
@@ -1136,19 +1046,17 @@ const Hero = () => {
 
             tracking-[2px]
           "
-        >
-          Wellness Partner
-        </p>
+              >
+                Wellness Partner
+              </p>
+            </div>
 
-      </div>
-
-      {/* Kit Partner */}
-      <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
-
-        <img
-          src="/shivnaresh-logo.webp"
-          alt="Shiv Naresh"
-          className="
+            {/* Kit Partner */}
+            <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+              <img
+                src="/shivnaresh-logo.webp"
+                alt="Shiv Naresh"
+                className="
             h-14
             sm:h-16
             lg:h-20
@@ -1156,10 +1064,10 @@ const Hero = () => {
             object-contain
             mx-auto
           "
-        />
+              />
 
-        <p
-          className="
+              <p
+                className="
             mt-4
 
             text-gray-700
@@ -1170,18 +1078,13 @@ const Hero = () => {
 
             tracking-[2px]
           "
-        >
-          Kit Partner
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
+              >
+                Kit Partner
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

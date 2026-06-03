@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getPlayers } from "../action/player.action";
 
-
 const initialState = {
   raiders: [],
   defenders: [],

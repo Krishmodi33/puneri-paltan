@@ -12,7 +12,7 @@ myAxios.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response Interceptor
@@ -24,7 +24,7 @@ myAxios.interceptors.response.use(
   function (error) {
     console.log("Response Error");
     return Promise.reject(error);
-  }
+  },
 );
 
 // Example

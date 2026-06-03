@@ -1,14 +1,8 @@
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-black py-6 sm:py-8">
-
       <div
         className="
           max-w-7xl
@@ -29,7 +23,6 @@ const Footer = () => {
           lg:gap-0
         "
       >
-
         {/* Copyright */}
         <div
           className="
@@ -48,7 +41,6 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex items-center gap-3 sm:gap-5">
-
           <a
             href="#"
             className="
@@ -168,7 +160,6 @@ const Footer = () => {
           >
             <FaYoutube />
           </a>
-
         </div>
 
         {/* Managed By */}
@@ -185,9 +176,7 @@ const Footer = () => {
             "
           />
         </div>
-
       </div>
-
     </footer>
   );
 };
