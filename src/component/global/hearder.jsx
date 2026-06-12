@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const navigation = [
   { name: "Players", href: "/players" },
   { name: "Paltan World", href: "/paltan-world" },
-  { name: "Tickets", href: "#" },
+  { name: "Tickets", href: "https://www.district.in/events/pkl-2025-chennai-team" },
 ];
 
 export default function Header() {
